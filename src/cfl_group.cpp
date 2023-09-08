@@ -181,6 +181,10 @@ int Fl_Color_Chooser_set_rgb(Fl_Color_Chooser *self, double r, double g, double 
     return ret;
 }
 
+void Fl_Color_Chooser_set_mode(Fl_Color_Chooser *self, int newMode) {
+    LOCK(self->mode(newMode));
+}
+
 GROUP_DEFINE(Fl_Color_Chooser)
 
 WIDGET_CLASS(Fl_Flex)
