@@ -91,6 +91,8 @@ int Fl_compose_state(void);
 
 void Fl_copy(const char *stuff, int len, int destination);
 
+void Fl_copy_image(const unsigned char* data, int W, int H, int destination);
+
 void Fl_paste_text(Fl_Widget *, int src);
 
 void Fl_paste_image(Fl_Widget *widget, int src);

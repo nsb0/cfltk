@@ -217,6 +217,10 @@ void Fl_copy(const char *stuff, int len, int destination) {
     Fl::copy(stuff, len, destination);
 }
 
+void Fl_copy_image(const unsigned char *data, int W, int H, int destination) {
+    Fl::copy_image(data, W, H, destination);
+}
+
 void Fl_paste_text(Fl_Widget *widget, int src) {
     Fl::paste(*widget, src, Fl::clipboard_plain_text);
 }
