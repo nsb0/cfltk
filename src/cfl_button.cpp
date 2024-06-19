@@ -16,31 +16,38 @@
 #include <FL/Fl_Shortcut_Button.H>
 #include <FL/Fl_Toggle_Button.H>
 
-#define BUTTON_DEFINE(widget)                                                                      \
-    int widget##_shortcut(const widget *self) {                                                    \
-        LOCK(auto ret = self->shortcut());                                                         \
-        return ret;                                                                                \
-    }                                                                                              \
-    void widget##_set_shortcut(widget *self, int shortcut) {                                       \
-        LOCK(self->shortcut(shortcut));                                                            \
-    }                                                                                              \
-    int widget##_clear(widget *self) {                                                             \
-        LOCK(auto ret = self->clear());                                                            \
-        return ret;                                                                                \
-    }                                                                                              \
-    int widget##_value(widget *self) {                                                             \
-        LOCK(auto ret = self->value());                                                            \
-        return ret;                                                                                \
-    }                                                                                              \
-    void widget##_set_value(widget *self, int flag) {                                              \
-        LOCK(self->value(flag));                                                                   \
-    }                                                                                              \
-    void widget##_set_down_box(widget *self, int box) {                                            \
-        LOCK(self->down_box(static_cast<Fl_Boxtype>(box)));                                        \
-    }                                                                                              \
-    int widget##_down_box(const widget *self) {                                                    \
-        LOCK(auto ret = self->down_box());                                                         \
-        return ret;                                                                                \
+#define BUTTON_DEFINE(widget)                                                  \
+    int widget##_shortcut(const widget *self) {                                \
+        LOCK(auto ret = self->shortcut());                                     \
+        return ret;                                                            \
+    }                                                                          \
+    void widget##_set_shortcut(widget *self, int shortcut) {                   \
+        LOCK(self->shortcut(shortcut));                                        \
+    }                                                                          \
+    int widget##_clear(widget *self) {                                         \
+        LOCK(auto ret = self->clear());                                        \
+        return ret;                                                            \
+    }                                                                          \
+    int widget##_value(widget *self) {                                         \
+        LOCK(auto ret = self->value());                                        \
+        return ret;                                                            \
+    }                                                                          \
+    void widget##_set_value(widget *self, int flag) {                          \
+        LOCK(self->value(flag));                                               \
+    }                                                                          \
+    void widget##_set_down_box(widget *self, int box) {                        \
+        LOCK(self->down_box(static_cast<Fl_Boxtype>(box)));                    \
+    }                                                                          \
+    int widget##_down_box(const widget *self) {                                \
+        LOCK(auto ret = self->down_box());                                     \
+        return ret;                                                            \
+    }                                                                          \
+    void widget##_set_compact(widget *self, unsigned char v) {                 \
+        LOCK(self->compact(v));                                                \
+    }                                                                          \
+    unsigned char widget##_compact(widget *self) {                             \
+        LOCK(auto ret = self->compact());                                      \
+        return ret;                                                            \
     }
 
 WIDGET_CLASS(Fl_Button)
@@ -171,16 +178,16 @@ WIDGET_CLASS(Fl_Shortcut_Button)
 WIDGET_DEFINE(Fl_Shortcut_Button)
 
 int Fl_Shortcut_Button_default_value(Fl_Shortcut_Button *self) {
-    LOCK(auto ret = self->default_value());
-    return ret;
+    // LOCK(auto ret = self->default_value());
+    return 0;
 }
 
 void Fl_Shortcut_Button_set_default_value(Fl_Shortcut_Button *self, int flag) {
-    LOCK(self->default_value(flag));
+    // LOCK(self->default_value(flag));
 }
 
 void Fl_Shortcut_Button_default_clear(Fl_Shortcut_Button *self) {
-    LOCK(self->default_clear());
+    // LOCK(self->default_clear());
 }
 
 BUTTON_DEFINE(Fl_Shortcut_Button)

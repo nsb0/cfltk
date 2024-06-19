@@ -15,15 +15,18 @@ void Fl_Printer_delete(Fl_Printer *self) {
     delete self;
 }
 
-int Fl_Printer_begin_job(Fl_Printer *self, int pagecount, int *frompage, int *topage,
-                         char **perr_message) {
-
+int Fl_Printer_begin_job(
+    Fl_Printer *self,
+    int pagecount,
+    int *frompage,
+    int *topage,
+    char **perr_message
+) {
     LOCK(auto ret = self->begin_job(pagecount, frompage, topage, perr_message));
     return ret;
 }
 
 int Fl_Printer_begin_page(Fl_Printer *self) {
-
     LOCK(auto ret = self->begin_page());
     return ret;
 }
@@ -33,7 +36,9 @@ int Fl_Printer_printable_rect(Fl_Printer *self, int *w, int *h) {
     return ret;
 }
 
-void Fl_Printer_margins(Fl_Printer *self, int *left, int *top, int *right, int *bottom) {
+void Fl_Printer_margins(
+    Fl_Printer *self, int *left, int *top, int *right, int *bottom
+) {
     LOCK(self->margins(left, top, right, bottom));
 }
 
@@ -62,7 +67,6 @@ void Fl_Printer_untranslate(Fl_Printer *self) {
 }
 
 int Fl_Printer_end_page(Fl_Printer *self) {
-
     LOCK(auto ret = self->end_page());
     return ret;
 }
@@ -80,11 +84,15 @@ int Fl_Printer_is_current(Fl_Printer *self) {
     return ret;
 }
 
-void Fl_Printer_print_widget(Fl_Printer *self, void *widget, int delta_x, int delta_y) {
+void Fl_Printer_print_widget(
+    Fl_Printer *self, void *widget, int delta_x, int delta_y
+) {
     LOCK(self->print_widget((Fl_Widget *)widget, delta_x, delta_y));
 }
 
-void Fl_Printer_print_window(Fl_Printer *self, void *win, int x_offset, int y_offset) {
+void Fl_Printer_print_window(
+    Fl_Printer *self, void *win, int x_offset, int y_offset
+) {
     LOCK(self->print_window((Fl_Window *)win, x_offset, y_offset));
 }
 

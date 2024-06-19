@@ -117,11 +117,15 @@ void Fl_Chart_add(Fl_Chart *self, double val, const char *str, unsigned col) {
     LOCK(self->add(val, str, col));
 }
 
-void Fl_Chart_insert(Fl_Chart *self, int ind, double val, const char *str, unsigned col) {
+void Fl_Chart_insert(
+    Fl_Chart *self, int ind, double val, const char *str, unsigned col
+) {
     LOCK(self->insert(ind, val, str, col));
 }
 
-void Fl_Chart_replace(Fl_Chart *self, int ind, double val, const char *str, unsigned col) {
+void Fl_Chart_replace(
+    Fl_Chart *self, int ind, double val, const char *str, unsigned col
+) {
     LOCK(self->replace(ind, val, str, col));
 }
 
@@ -254,7 +258,9 @@ void Fl_Tooltip_disable(void) {
     LOCK(Fl_Tooltip::disable());
 }
 
-void Fl_Tooltip_enter_area(Fl_Widget *w, int X, int Y, int W, int H, const char *tip) {
+void Fl_Tooltip_enter_area(
+    Fl_Widget *w, int X, int Y, int W, int H, const char *tip
+) {
     LOCK(Fl_Tooltip::enter_area(w, X, Y, W, H, tip));
 }
 
@@ -350,7 +356,6 @@ const char *Fl_Help_View_filename(const Fl_Help_View *self) {
 }
 
 int Fl_Help_View_find(Fl_Help_View *self, const char *s, int p) {
-
     LOCK(auto ret = self->find(s, p));
     return ret;
 }
@@ -431,7 +436,6 @@ void Fl_Help_View_set_scrollbar_size(Fl_Help_View *self, int newSize) {
 }
 
 int Fl_Help_View_load(Fl_Help_View *self, const char *f) {
-
     LOCK(auto ret = self->load(f));
     return ret;
 }
@@ -459,6 +463,11 @@ void Fl_Input_Choice_clear(Fl_Input_Choice *self) {
 
 const char *Fl_Input_Choice_value(const Fl_Input_Choice *self) {
     LOCK(auto ret = self->value());
+    return ret;
+}
+
+int Fl_Input_Choice_value2(Fl_Input_Choice *self) {
+    LOCK(auto ret = self->menu()->value());
     return ret;
 }
 
